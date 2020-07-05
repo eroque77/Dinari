@@ -33,6 +33,7 @@ Route::group(['prefix' => 'produtos'], function (){
 Route:: get('/cadastro_clientes', 'MenuController@cadastro_de_clientes')->name('cadastro_clientes'); 
 Route:: get('/cadastro_produtos','MenuController@cadastro_de_produtos')->name('cadastro_produtos'); 
 
+
 //Datatables
 Route:: get('/listagem_clientes','MenuController@listagem_de_clientes')->name('listagem_de_clientes');
 Route:: get('/listagem_de_clientes_dat','MenuController@listagem_de_clientes_dat')->name('listagem_de_clientes_dat');
