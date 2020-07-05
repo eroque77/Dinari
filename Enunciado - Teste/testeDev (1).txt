@@ -1,0 +1,56 @@
+Em Laravel, parte 1:
+-> Criar migrations, models e controllers para:
+--> Cadastro de cliente (a migration deve conter cpf/cnpj, nome e data do cadastro)
+--> Cadastro de produto (a migration deve conter descrição, valor, quantidade em estoque e data do cadastro)
+--> Venda (a migration deve conter chave estrangeira para cliente, soma do valor de todos produtos vendidos e data da finalização venda)
+--> Itens da Venda (a migration deve conter chave estrangeira para produto, valor do produto, quantidade vendida)
+
+-> Criar uma API Rest com endpoints para:
+--> Cadastrar cliente
+--> Listar cliente
+--> Alterar cliente
+--> Excluir cliente
+
+--> Cadastrar produto
+--> Listar produto
+--> Alterar produto
+--> Excluir produto
+
+--> Criar Venda
+--> Alterar cliente da venda
+--> Adicionar produtos a venda
+--> Remover produtos da venda
+--> Finalizar venda
+--> Listar vendas
+--> Listar produtos da venda
+
+-> Criar Request para validar se todos os parametros foram enviados
+
+
+Em Laravel, parte 2, para consumir a API:
+-> Criar tela para cadastrar, listar, alterar e excluir cliente
+
+-> Criar tela para cadastrar, listar, alterar e excluir produtos
+
+-> Criar tela para criar venda, contendo:
+--> Opção para selecionar cliente
+--> Opção para adicionar produto (informando a quantidade a ser vendida)
+--> Listagem de todos os produtos adicionados
+--> Valor total da venda
+--> Opção para finalizar venda
+
+Ao finalizar a venda
+--> Atualizar quantidade em estoque do produto
+
+Validações necessárias:
+-> Não permitir a exclusão de um cliente se o mesmo constar em uma venda
+-> Não permitir a exclusão de produto se o mesmo constar em um item da venda
+-> Não permitir alterar o cliente da venda se a mesma estiver finalizada
+-> Não permitir exluir um item da venda se a mesma estiver finalizada
+-> Não permitir adicionar item a venda se quantidade em estoque for menor do que a quantidade vendida
+-> Não permitir adicionar item a venda se a mesma estiver finalizada
+
+Importante:
+-> Os principios de MVC devem ser aplicados corretamente
+-> Os endpoints da API devem ter os métodos (GET, POST, PUT e DELETE) corretos para cada ação que forem realizar
+-> O código deve ser colocado no Github, em modo público, enviar o link do repositório para michael@dinari.com.br
