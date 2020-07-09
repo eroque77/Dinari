@@ -19,6 +19,9 @@ class CriarTabelaItensDaVenda extends Migration
             $table->foreign('id_produto')->references('id')->on('produtos'); 
             $table->decimal('valor_produto', 8,2);
             $table->integer('qtde_vendida');
+            $table->integer('id_cliente')->unsigned();
+            $table->foreign('id_cliente')->references('id')->on('clientes');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

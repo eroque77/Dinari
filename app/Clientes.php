@@ -32,8 +32,11 @@ class Clientes extends Model
         //Criptografar um Password
         //$input['password']=Hash::make($input['password']);          
 
-        $cliente->save();
-        return $cliente;       
+        if($cliente->save()){
+            return $cliente; 
+        }else{
+            return false;
+        }      
     }
 
     public function getclient($id){
@@ -62,6 +65,6 @@ class Clientes extends Model
         $cli->fill($input);   //Usando Mass Assignment, salva no banco já associando o que veio do array [Só pode sr utilizado se houver $fillable]
         $cli->save();
         return $cli;        
-    }
+    }   
 
 }

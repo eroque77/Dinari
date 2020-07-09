@@ -18,6 +18,7 @@ class CriarTabelaVenda extends Migration
             $table->decimal('soma_produtos', 8,2); //Soma de todos os produtos vendidos          
             $table->integer('id_cliente')->unsigned();
             $table->foreign('id_cliente')->references('id')->on('clientes');
+            $table->string('data_finalizacao', 20);
             $table->timestamps();
         });
     }

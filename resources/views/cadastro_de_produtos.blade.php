@@ -13,7 +13,8 @@
                     <div class="panel-heading" align='center'><b>Alteração de Produtos</b></div> <!--Sombreamento -->
                     @php ($rota = 'alterar_produtos1')
                 @endif
-                    <div class="panel-body">
+
+                     <div class="panel-body">
                         <form class="form-horizontal" method="POST" action="{{route($rota)}}">
                             {{ csrf_field() }}
                             <div class="form-group">

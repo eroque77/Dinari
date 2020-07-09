@@ -13,6 +13,8 @@
                     <div class="panel-heading" align='center'><b>Alteração de Clientes</b></div> <!--Sombreamento -->
                     @php ($rota = 'alterar_clientes1')
                 @endif
+
+                
                     <div class="panel-body">
                         <form class="form-horizontal" method="POST" action="{{route($rota)}}">
                             {{ csrf_field() }}
@@ -21,13 +23,9 @@
                                 <div class="col-md-6" align="left">
                                     <input id="nome" type="text" class="form-control" name="nome" required autofocus style='width:350px' maxlength="80" autocomplete="nope" value="{{@$response['nome']}}">
                                 </div>  
-                                <label class="col-md-3 col-md-offset-1 control-label">*Cpf</label>
+                                <label class="col-md-3 col-md-offset-1 control-label">*Cpf/Cnpj</label>
                                 <div class="col-md-6" align="left">
-                                    <input id="cpf" type="text" class="form-control" name="cpf" required autofocus style='width:150px' maxlength="11" autocomplete="nope" value="{{@$response['cpf']}}">
-                                </div>
-                                <label class="col-md-3 col-md-offset-1 control-label">*Cnpj</label>
-                                <div class="col-md-6" align="left">
-                                    <input id="cnpj" type="text" class="form-control" name="cnpj" required autofocus style='width:250px' maxlength="14" autocomplete="nope" value="{{@$response['cnpj']}}">
+                                    <input id="cpf" type="text" class="form-control" name="cpf" required autofocus style='width:200px' maxlength="14" autocomplete="nope" value="{{@$response['cpf']}}">
                                 </div>
                                 <input id="id" name="id" type="hidden" value="{{@$response['id']}}"> 
                                                               
@@ -93,8 +91,6 @@
         $('#cpf').keyup(function() {
             $(this).val(this.value.replace(/\D/g, ''));
         });
-        $('#cnpj').keyup(function() {
-            $(this).val(this.value.replace(/\D/g, ''));
-        });
+        
     </script>
 @endpush

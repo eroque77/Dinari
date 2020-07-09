@@ -4,32 +4,32 @@
 <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading" align='center' style='font-size:18px' align='center'><b>Listagem de Produtos</b></div>  
+                <div class="panel-heading" align='center' style='font-size:18px' align='center'><b>Listagem de Vendas</b></div>  
 
                 <div class="col-md-12" style="margin-bottom:10px" align="right">
                     <br>
-                    <button type="button" class="btn btn-info" onclick="window.location='cadastro_produtos'">
-                    <span class="glyphicon glyphicon-user"></span>&nbsp;Cadastrar Produto
+                    <button type="button" class="btn btn-info" onclick="window.location='criar_venda'">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Criar Venda
                     </button>                     
-                </div>      
-                                
+                </div>          
+
                 <div class="panel-body">              
                                        
                     <table id="example" class="table table-bordered table-hidaction table-hover" cellspacing="0" width="100%">
                        <thead>
                             <tr>
                                 <th style='width:2%; color:white; background-color:#1d2939;font-size:13px;'>Id</th>  
-                                <th style='width:68%; color:white; background-color:#1d2939;font-size:13px'>Descrição</th>  
-                                <th style='width:6%; color:white; background-color:#1d2939;font-size:13px'>Valor</th>  
-                                <th style='width:4%; color:white; background-color:#1d2939;font-size:13px'>Qt.Est</th>  
-                                <th style='width:9%; color:white; background-color:#1d2939;font-size:13px'>Ações</th>                                                                             
+                                <th style='width:65%; color:white; background-color:#1d2939;font-size:13px'>Nome</th>  
+                                <th style='width:6%; color:white; background-color:#1d2939;font-size:13px'>Total Venda</th>  
+                                <th style='width:12%; color:white; background-color:#1d2939;font-size:13px'>Data Finalização</th>  
+                                <th style='width:4%; color:white; background-color:#1d2939;font-size:13px'>Ações</th>                                                                             
                             </tr>  
                        </thead>                                                          
                     </table>               
 
                 </div>
-            </div>
-                 
+            </div>         
+            
       
         </div>
         
@@ -41,7 +41,7 @@
     <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>   
         
     <script>
-            source='{{ url('listagem_de_produtos_dat') }}';
+            source='{{ url('listar_vendas') }}';
             $(function() {
                 $('#example').DataTable({
                     processing: false,
@@ -49,14 +49,14 @@
                     ajax: source,
                     columns: [
                                 { data: 'id', name: 'id' }, 
-                                { data: 'descricao', name: 'descricao' }, 
-                                { data: 'valor', name: 'valor' },    
-                                { data: 'quantidade_est', name: 'quantidade_est' },    
+                                { data: 'nome', name: 'nome' }, 
+                                { data: 'soma_produtos', name: 'soma_produtos' },    
+                                { data: 'data_finalizacao', name: 'data_finalizacao' },    
                                                            
                                 {
                                     "data": "action",
                                     "render": function(data, type, row, meta){
-                                        return "<button type='button' class='btn-warning btn-xs' title='Alterar' onclick='alterar_id("+row.id+")'>Alterar</button> <button type='button' class='btn-danger btn-xs' title='Alterar' onclick='excluir_id("+row.id+")'>Excluir</button>";
+                                        return "<button type='button' class='btn-warning btn-xs' title='Alterar' onclick='consultar_venda("+row.id+")'>Detalhes</button>";
                                     }
                                 }   
                             ],
@@ -79,12 +79,9 @@
     </script>
 
     <script>
-        function alterar_id(id){
-            window.location='alterar_produtos/'+id;  
-        }
-        function excluir_id(id){
-            window.location='excluir_produtos/'+id;  
-        }
+        function consultar_venda(id){
+            window.location='consultar_venda/'+id;  
+        }      
     </script>
 
     <script>
@@ -102,12 +99,6 @@
 
 @if (strstr(session('message'), 'Erro')) {
     <div class="alert alert-success alert-dismissible" id='msg' style='width:320px;height:50px;position:fixed;top:45%;left:40%;background-color:red;color:white;z-index:100' align='center'>
-       {{ session('message') }}
-    </div>  
-@endif
-
-@if (strstr(session('message'), 'consta')) {
-    <div class="alert alert-success alert-dismissible" id='msg' style='width:320px;height:50px;position:fixed;top:45%;left:40%;background-color:orange;color:black;z-index:100' align='center'>
        {{ session('message') }}
     </div>  
 @endif

@@ -40,15 +40,15 @@ Em Laravel, parte 2, para consumir a API:
 --> Opção para finalizar venda
 
 Ao finalizar a venda
---> Atualizar quantidade em estoque do produto
+--> Atualizar quantidade em estoque do produto [OK]
 
 Validações necessárias:
--> Não permitir a exclusão de um cliente se o mesmo constar em uma venda
--> Não permitir a exclusão de produto se o mesmo constar em um item da venda
+-> Não permitir a exclusão de um cliente se o mesmo constar em uma venda [OK]
+-> Não permitir a exclusão de produto se o mesmo constar em um item da venda [Ok]
 -> Não permitir alterar o cliente da venda se a mesma estiver finalizada
--> Não permitir exluir um item da venda se a mesma estiver finalizada
--> Não permitir adicionar item a venda se quantidade em estoque for menor do que a quantidade vendida
--> Não permitir adicionar item a venda se a mesma estiver finalizada
+-> Não permitir exluir um item da venda se a mesma estiver finalizada [OK]
+-> Não permitir adicionar item a venda se quantidade em estoque for menor do que a quantidade vendida [OK]
+-> Não permitir adicionar item a venda se a mesma estiver finalizada [NAO]
 
 Importante:
 -> Os principios de MVC devem ser aplicados corretamente

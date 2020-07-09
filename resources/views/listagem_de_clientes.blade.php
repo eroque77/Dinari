@@ -4,11 +4,17 @@
 <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading" align='center' style='font-size:18px' align='center'><b>Listagem de Clientes</b></div>              
-                   
-                <div class="panel-body">              
-                                       
-                    <table id="example" class="table table-bordered table-hidaction table-hover" cellspacing="0" width="100%">
+                <div class="panel-heading" align='center' style='font-size:18px' align='center'><b>Listagem de Clientes</b></div>    
+
+                <div class="col-md-12" style="margin-bottom:10px" align="right">
+                    <br>
+                    <button type="button" class="btn btn-info" onclick="window.location='cadastro_clientes'">
+                    <span class="glyphicon glyphicon-user"></span>&nbsp;Cadastrar Cliente
+                    </button>                     
+                </div>          
+                
+                <div class="panel-body">                                         
+                    <table id="example" class="table table-bordered table-hidaction table-hover"  cellspacing="0" width="100%">
                        <thead>
                             <tr>
                                 <th style='width:1%; color:white; background-color:#1d2939;font-size:13px;'>Id</th>  
@@ -21,15 +27,7 @@
                     </table>               
 
                 </div>
-            </div>
-          
-            <div class="form-group">
-                <div class="col-md-12" align='center'>
-                    <button type="button" class="btn btn-warning" onclick="window.location='{{ route('start') }}';">
-                        Retornar
-                    </button>                     
-                </div>
-            </div>  
+            </div>         
       
         </div>
         
@@ -48,9 +46,17 @@
     </div>  
 @endif
 
+@if (strstr(session('message'), 'consta')) {
+    <div class="alert alert-success alert-dismissible" id='msg' style='width:320px;height:50px;position:fixed;top:45%;left:40%;background-color:orange;color:black;z-index:100' align='center'>
+       {{ session('message') }}
+    </div>  
+@endif
+
 @push ('scripts')
     <!-- DataTables -->    
     <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>   
+
+  
         
     <script>
             source='{{ url('listagem_de_clientes_dat') }}';
@@ -81,8 +87,10 @@
                         EmptyTable:     "Nenhum dado disponível nessa tabela",
                         paginate: {                     
                         previous: "Anterior",
-                        next:     "Próximo",                     
-                    }
+                        next:     "Próximo",                                           
+                    },
+                
+
                     }
 
                 });

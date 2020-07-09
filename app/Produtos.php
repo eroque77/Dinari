@@ -3,6 +3,7 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Input;
+use App\Itens_da_venda; //Carregando a Model Itens_da_venda
 
 class Produtos extends Model
 {
@@ -11,7 +12,6 @@ class Produtos extends Model
     ];
 
     //protected $hidden = ['nome']; //Não exibe a variável nome no retorno;
-
 
     //Métodos do Crud-----------------------------------------------------|
     public function allProducts(){
@@ -30,10 +30,14 @@ class Produtos extends Model
             */
 
         //Criptografar um Password
-        //$input['password']=Hash::make($input['password']);          
-
-        $produto->save();
-        return $produto;       
+        //$input['password']=Hash::make($input['password']);   
+        
+        if($produto->save()){
+            return $produto; 
+        }else{
+            return false;
+        }    
+              
     }
 
     public function getproduct($id){
