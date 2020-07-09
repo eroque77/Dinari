@@ -189,8 +189,7 @@ class Api_DinariController extends Controller
         return Response::json(['venda'=>$venda, 'dados'=>$dados_itens], 200);
 
         //return Response::json($venda, 200);
-    }
-    
+    }  
 
     
 }
