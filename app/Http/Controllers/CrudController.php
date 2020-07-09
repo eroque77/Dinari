@@ -200,6 +200,5 @@ class CrudController extends Controller
         return redirect()->route('listagem_de_produtos')->with('message', "Erro ao excluir o produto!");     
      }
 
-     //VENDA---------------------------------------------------------------------------------------------------|
-
+   
 }
