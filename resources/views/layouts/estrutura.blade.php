@@ -39,7 +39,7 @@
                     <ul class="nav navbar-nav navbar-center bg-danger">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Cadastros
+                                Clientes
                             </a>
                             <ul class="dropdown-menu" role="menu"  style='width:250px'>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >

@@ -29,6 +29,11 @@
 
                 </div>
             </div>         
+
+            <div class="col-md-12 text-success" align='right'>
+                <div id='total'><b>Total de Vendas:&nbsp;</b>{{$valor_total[0]['valor']}}</div>
+                <br>
+            </div>
             
       
         </div>
@@ -89,6 +94,7 @@
             $('#msg').fadeOut(1500);        
         },1500);
     </script>
+
 @endpush
 
 @if (strstr(session('message'), 'sucesso')) {
@@ -102,3 +108,5 @@
        {{ session('message') }}
     </div>  
 @endif
+
+

@@ -28,7 +28,7 @@
                     Produto
                     <select class="form-control" id="produto" name="produto" autofocus style='width:330px'>
                         @foreach($lista_de_produtos as $prod)
-                            <option id="{{$prod->valor}}" value="{{$prod->id}}">{{$prod->descricao}}</option>                          
+                            <option id="{{$prod->valor}}" value="{{$prod->id}}">{{$prod->descricao.':['.$prod->valor.']' }}</option>                          
                         @endforeach
                     </select>      
                 </div> 
@@ -54,7 +54,8 @@
                                 <th style='width:1%; color:white; background-color:#1d2939;font-size:13px;'>Id</th>  
                                 <th style='width:60%; color:white; background-color:#1d2939;font-size:13px'>Produto</th>
                                 <th style='width:3%; color:white; background-color:#1d2939;font-size:13px'>Qtde</th>
-                                <th style='width:8%; color:white; background-color:#1d2939;font-size:13px'>Valor</th>  
+                                <th style='width:8%; color:white; background-color:#1d2939;font-size:13px'>Valor Unit.</th>  
+                                <th style='width:8%; color:white; background-color:#1d2939;font-size:13px'>Total</th> 
                                 <th style='width:5%; color:white; background-color:#1d2939;font-size:13px'>Ações</th>                                                                             
                             </tr>  
                        </thead>                                                          
@@ -126,7 +127,8 @@
                                 { data: 'id', name: 'id' }, 
                                 { data: 'descricao', name: 'descricao' }, 
                                 { data: 'qtde_vendida', name: 'qtde_vendida' },
-                                { data: 'valor_produto', name: 'valor_produto' },                                 
+                                { data: 'valor_produto', name: 'valor_produto' },  
+                                { data: 'soma1', name: 'soma1' },                                 
                                                                                          
                                 {
                                     "data": "action",
@@ -209,7 +211,7 @@
                 datatype: 'json',
                 success: function(data){
                     var obj = jQuery.parseJSON(data);  
-                   
+                                   
                     if(obj.response==1){
                         //$('#example').dataTable().fnDestroy();
                         $('#example').dataTable().fnClearTable();

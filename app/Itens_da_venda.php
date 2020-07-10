@@ -4,6 +4,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Input;
 use App\Produtos; //Carregando a Model Produtos
+use DB;
 
 
 class Itens_da_venda extends Model
@@ -15,7 +16,12 @@ class Itens_da_venda extends Model
     public function allItensVenda(){
         //return self::all();
 
-        return Itens_da_venda::select ('itens_da_venda.id', 'descricao', 'valor_produto', 'qtde_vendida')          
+        /*return Itens_da_venda::select ('itens_da_venda.id', 'descricao', 'valor_produto', 'qtde_vendida')          
+                ->join('produtos', 'itens_da_venda.id_produto', '=', 'produtos.id')
+                ->where('itens_da_venda.status', '=', 0)
+                ->get();*/   
+                
+                return Itens_da_venda::select ('itens_da_venda.id', 'descricao', 'valor_produto', 'qtde_vendida', DB::raw('valor_produto*qtde_vendida as soma1'))          
                 ->join('produtos', 'itens_da_venda.id_produto', '=', 'produtos.id')
                 ->where('itens_da_venda.status', '=', 0)
                 ->get();                

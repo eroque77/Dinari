@@ -8,6 +8,7 @@ use DB;
 use App\Clientes; //Carregando a Model Clientes
 use App\Produtos; //Carregando a Model Produtos
 use App\Itens_da_venda; //Carregando a Model Itens_da_venda
+use App\Venda; //Carregando a Model Itens_da_venda
 use Yajra\Datatables\Datatables;
 
 /*Datatables
@@ -68,8 +69,10 @@ class MenuController extends Controller
     public function criar_venda(){
         $lista_de_clientes = Clientes::select ('id','nome')->get();
         $lista_de_produtos = Produtos::select ('id','descricao','valor')->get();       
-        $valor_total_venda= Itens_da_venda::select (DB::raw('sum(valor_produto*qtde_vendida) as valor'))->where('status', '=', 0)->get();       
-        return view('criar_venda', compact('lista_de_clientes', 'lista_de_produtos', 'valor_total_venda'));        
+        $valor_total_venda= Itens_da_venda::select (DB::raw('sum(valor_produto*qtde_vendida) as valor'))->where('status', '=', 0)->get();          
+        $soma_produtos= Itens_da_venda::select (DB::raw('sum(qtde_vendida) as qtde'))->where('status', '=', 0)->get();  
+
+        return view('criar_venda', compact('lista_de_clientes', 'lista_de_produtos', 'valor_total_venda','soma_produtos'));        
     }
 
     public function itens_da_venda(Request $request){
@@ -93,7 +96,9 @@ class MenuController extends Controller
         $response_json = curl_exec($ch);
         curl_close($ch);
         //$response=json_decode($response_json, true); 
-        echo $response_json;              
+
+        echo $response_json;  
+
     }
 
     public function listagem_de_itens_da_venda(){     
@@ -103,7 +108,7 @@ class MenuController extends Controller
         curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
         $response_json = curl_exec ($ch);
         curl_close ($ch);
-        $response = json_decode ($response_json, true);       
+        $response = json_decode ($response_json, true);  
         return Datatables::of($response)->make(true);        
     }
 
@@ -151,8 +156,9 @@ class MenuController extends Controller
         return Datatables::of($response)->make(true); 
     }
 
-    public function listagem_de_vendas(){                        
-        return view('listagem_de_vendas');
+    public function listagem_de_vendas(){  
+        $valor_total = Venda::select (DB::raw('sum(soma_produtos) as valor'))->get();                             
+        return view('listagem_de_vendas', compact('valor_total'));
     }
 
    

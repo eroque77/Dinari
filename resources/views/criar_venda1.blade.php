@@ -25,16 +25,19 @@
                                 <th style='width:1%; color:white; background-color:#1d2939;font-size:13px;'>Id</th>  
                                 <th style='width:60%; color:white; background-color:#1d2939;font-size:13px'>Produto</th>
                                 <th style='width:3%; color:white; background-color:#1d2939;font-size:13px'>Qtde</th>
-                                <th style='width:8%; color:white; background-color:#1d2939;font-size:13px'>Valor</th>                                                                                                           
+                                <th style='width:8%; color:white; background-color:#1d2939;font-size:13px'>Valor Unit.</th> 
+                                <th style='width:8%; color:white; background-color:#1d2939;font-size:13px'>Valor Total</th>                                                                                                          
                             </tr>  
                        </thead> 
+                       <script>som=0;</script>
                        <tbody>
                             @foreach($dados_itens as $value)
                                 <tr>                              
                                     <td>{{$value['id']}}</td>
                                     <td>{{$value['descricao']}}</td>
-                                    <td>{{$value['qtde_vendida']}}</td>
-                                    <td>{{$value['valor_produto']}}</td>                               
+                                    <td>{{$value['qtde_vendida']}} <script>som=som+parseInt("<?php echo $value['qtde_vendida']; ?>");</script></td>
+                                    <td>{{$value['valor_produto']}}</td> 
+                                    <td>{{number_format($value['valor_produto']*$value['qtde_vendida'],2,",",".")}}</td>                              
                                 </tr> 
                             @endforeach
                         </tbody>                                                         
@@ -45,7 +48,9 @@
             <input type="hidden" id="tott">
             <div class="col-md-8 col-md-offset-2 text-danger" align='right'>
             <br>
-                <div id='total'><b>Valor Total da Venda:&nbsp;</b>{{$valor_total_venda[0]['valor']}}</div>
+                <div id='total'>
+                <b>Total de Produtos: <script>document.write(som);</script><br>
+                <b>Valor Total da Venda:&nbsp;</b>{{$valor_total_venda[0]['valor']}}</div>
             </div>
             <br>
           
